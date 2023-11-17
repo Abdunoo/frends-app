@@ -1,0 +1,387 @@
+<!-- <div *ngIf="profil" class="flex flex-row bg-gray-950 m-0 h-screen w-full">
+	<div class="relative  w-auto h-full flex flex-col justify-between py-8 px-0 bg-transparent border-r border-blue-950">
+		<div class="text-2xl px-6">
+			<img src="assets/abdungram.png" alt="logo" class="h-10 w-auto" [hidden]="showMenu">
+			<img src="assets/lightning.png" alt="logo" class="w-10 h-auto" [hidden]="!showMenu">
+
+		</div>
+		<div class=" text-base text-gray-200 mt-2 mx-4 space-y-3 cursor-pointer">
+
+			<div class="flex py-2 px-4 hover:bg-slate-800 rounded-md space-x-2 items-center" routerLink="./home">
+				<mat-icon class="">home</mat-icon>
+				<div [hidden]="showMenu">Home</div>
+			</div>
+			<div class="flex py-2 px-4 hover:bg-slate-800 rounded-md space-x-2 items-center" (click)="showMenu = !showMenu"
+				(click)="searchNav = !searchNav">
+				<mat-icon class="">search</mat-icon>
+				<div [hidden]="showMenu">Search</div>
+			</div>
+			<div class="flex py-2 px-4 hover:bg-slate-800 rounded-md space-x-2 items-center" routerLink="./explore">
+				<mat-icon class="">explore</mat-icon>
+				<div [hidden]="showMenu">Explore</div>
+			</div>
+			<div class="flex py-2 px-4 hover:bg-slate-800 rounded-md space-x-2 items-center">
+				<mat-icon class="">video_library</mat-icon>
+				<div [hidden]="showMenu">Reels</div>
+			</div>
+			<div class="flex py-2 px-4 hover:bg-slate-800 rounded-md space-x-2 items-center" routerLink="./messages"
+				(click)="showMenu = true">
+				<mat-icon class="">message</mat-icon>
+				<div [hidden]="showMenu">Messages</div>
+			</div>
+			<div class="flex py-2 px-4 hover:bg-slate-800 rounded-md space-x-2 items-center" routerLink="./market">
+				<span class="material-icons">add_business</span>
+				<div [hidden]="showMenu">Marketplace</div>
+			</div>
+			<div class="flex py-2 px-4 hover:bg-slate-800 rounded-md space-x-2 items-center" (click)="showMenu = !showMenu"
+				(click)="notifNav = !notifNav">
+				<mat-icon class="">favorite</mat-icon>
+				<div [hidden]="showMenu">Notification</div>
+			</div>
+			<div class="flex py-2 px-4 hover:bg-slate-800 rounded-md space-x-2 items-center" (click)="openDialog()">
+				<span class="material-icons">add_box</span>
+				<div [hidden]="showMenu">Create</div>
+			</div>
+
+			<div class="flex py-2 px-4 hover:bg-slate-800 rounded-md space-x-2 items-center" routerLink="./myProfil">
+				<img
+					src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQodChuFfzDo1YJ00Ys9reDZhKmLYjbNFRtlin_hrnJq5O5IsLgbnMRwu8aMjGw1v1Gx3Q&usqp=CAU"
+					class=" rounded-full" height="32px" width="32px" alt="">
+				<div [hidden]="showMenu">{{profil.username}}</div>
+			</div>
+		</div>
+		<div class="flex justify-center py-1 px-1 mt-2 lg:mx-4 hover:bg-slate-800 text-white rounded-md  items-center"
+			(click)="showMenu = !showMenu">
+			<mat-icon class="">menu</mat-icon>
+		</div>
+	</div>
+	<div class="relative w-full overflow-auto text-white m-0">
+		<mat-drawer-container *ngIf="searchNav" class="drawer h-full shadow py-4" hasBackdrop="false">
+			<div class="text-gray-400 text-base flex justify-center">Search</div>
+			<div class="px-6 py-2">
+				<input type="text" [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Search..."
+					class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300" />
+			</div>
+			<div *ngFor="let lst of searchResult" (click)="prfUser(lst.username)" (click)="searchNav=false"
+				class="px-2 py-3 flex items-center justify-start bg-gray-500 mx-4 my-4 rounded border overflow-auto">
+				<div>{{lst.username}}</div>
+			</div>
+		</mat-drawer-container>
+		<mat-drawer-container *ngIf="notifNav" class="drawer h-full shadow" hasBackdrop="false">
+			<cmp-my-notif></cmp-my-notif>
+		</mat-drawer-container>
+		<router-outlet></router-outlet>
+	</div>
+</div> -->
+
+<div class="h-full w-screen dark:bg-gray-800 bg-gray-200 md:p-4 flex overflow-hidden bottom-0">
+	<!-- sidebar -->
+	<div class=" max-sm:hidden grid content-between h-full w-auto dark:bg-gray-700 bg-zinc-50 p-4 pr-16 rounded">
+		<div class="h-full w-auto space-y-2 rounded">
+			<div class="flex space-x-2">
+				<img src="assets/lightning.png" alt="" class="h-10 w-10">
+				<h1 class="text-blue-600 dark:text-gray-300">Frends</h1>
+			</div>
+			<div routerLink="./home"
+				class="flex text-gray-600 dark:text-gray-300 space-x-4 pt-2 px-2 hover:bg-gray-300 dark:hover:bg-gray-800 rounded cursor-pointer">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+					stroke="currentColor" class="w-6 h-6">
+					<path stroke-linecap="round" stroke-linejoin="round"
+						d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+				</svg>
+				<p class="pt-1">Home</p>
+			</div>
+			<div routerLink="./explore"
+				class="flex text-gray-600 dark:text-gray-300 space-x-4 pt-2 px-2 hover:bg-gray-300 dark:hover:bg-gray-800 rounded cursor-pointer">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+					stroke="currentColor" class="w-6 h-6">
+					<path stroke-linecap="round" stroke-linejoin="round"
+						d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 01-1.161.886l-.143.048a1.107 1.107 0 00-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 01-1.652.928l-.679-.906a1.125 1.125 0 00-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 00-8.862 12.872M12.75 3.031a9 9 0 016.69 14.036m0 0l-.177-.529A2.25 2.25 0 0017.128 15H16.5l-.324-.324a1.453 1.453 0 00-2.328.377l-.036.073a1.586 1.586 0 01-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643m5.276-3.67a9.012 9.012 0 01-5.276 3.67m0 0a9 9 0 01-10.275-4.835M15.75 9c0 .896-.393 1.7-1.016 2.25" />
+				</svg>
+				<p class="pt-1">Explore</p>
+			</div>
+			<div routerLink="./messages"
+				class="flex text-gray-600 dark:text-gray-300 space-x-4 pt-2 px-2 hover:bg-gray-300 dark:hover:bg-gray-800 rounded cursor-pointer">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+					stroke="currentColor" class="w-6 h-6">
+					<path stroke-linecap="round" stroke-linejoin="round"
+						d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
+				</svg>
+				<p class="pt-1">Message</p>
+			</div>
+			<div routerLink="./market"
+				class="flex text-gray-600 dark:text-gray-300 space-x-4 pt-2 px-2 hover:bg-gray-300 dark:hover:bg-gray-800 rounded cursor-pointer">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+					stroke="currentColor" class="w-6 h-6">
+					<path stroke-linecap="round" stroke-linejoin="round"
+						d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+				</svg>
+				<p class="pt-1 ">Marketplace</p>
+			</div>
+			<div *ngIf="profil?.role === 'admin'" routerLink="./members"
+				class="flex text-gray-600 dark:text-gray-300 space-x-4 pt-2 px-2 hover:bg-gray-300 dark:hover:bg-gray-800 rounded cursor-pointer">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+					stroke="currentColor" class="w-6 h-6">
+					<path stroke-linecap="round" stroke-linejoin="round"
+						d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+				</svg>
+				<p class="pt-1 ">Members</p>
+			</div>
+			<div routerLink="./myProfil"
+				class="flex text-gray-600 dark:text-gray-300 space-x-4 pt-2 px-2 hover:bg-gray-300 dark:hover:bg-gray-800 rounded cursor-pointer">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+					stroke="currentColor" class="w-6 h-6">
+					<path stroke-linecap="round" stroke-linejoin="round"
+						d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+				</svg>
+				<p class="pt-1">Profil</p>
+			</div>
+		</div>
+		<button class="flex space-x-2 hover:text-blue-400 p-1 text-gray-600 dark:text-gray-300 rounded"
+			(click)="logout()">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+				stroke="currentColor" class="w-6 h-6">
+				<path stroke-linecap="round" stroke-linejoin="round"
+					d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+			</svg>
+			<span>Logout</span>
+		</button>
+	</div>
+
+	<div class="flex flex-col h-full w-full">
+		<!-- header -->
+		<div 
+			class="flex dark:bg-gray-700 bg-zinc-50 w-auto md:ml-4 items-center justify-between p-2 text-gray-700 rounded shadow">
+			<!-- <div (click)="showMobileMenu = !showMobileMenu" class="max-sm:hidden">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
+				 </svg>			 
+			</div> -->
+			<div class="hidden sm:flex space-x-4 text-gray-600 dark:text-gray-300">
+				<div class="p-1 bg-blue-500 text-white rounded">
+					<button>Explore</button>
+				</div>
+				<div routerLink="./notif" class="p-1">
+					<button>Notification</button>
+				</div>
+				<div routerLink="./pages" class="p-1">
+					<button>Pages</button>
+				</div>
+			</div>
+			<div class="flex space-x-4">
+				<div class="max-sm:hidden text-gray-600 dark:text-gray-300 flex space-x-2 items-center">
+					<svg (click)="searchNav = !searchNav" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+						stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+						<path stroke-linecap="round" stroke-linejoin="round"
+							d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+					</svg>
+				</div>
+				<div class="max-sm:hidden flex space-x-2 text-gray-600 dark:text-gray-300 items-center">
+					<img *ngIf="!profil?.imgUrl" src="assets/profil.jpeg" alt="Profile Picture"
+						class="w-11 h-11 rounded-full object-cover">
+					<img *ngIf="profil?.imgUrl" [src]="profil?.imgUrl" alt="Profile Picture"
+						class="w-11 h-11 rounded-full object-cover">
+					<p class="">@{{profil?.username}}</p>
+				</div>
+			</div>
+
+			<div class="sm:hidden flex space-x-2 items-center justify-between w-full text-gray-600 dark:text-gray-300">
+				<div class="flex space-x-2 justify-center">
+					<span class="font-semibold rounded-full text-blue-400">oO</span>
+					<span class="text-base font-serif font-semibold text-blue-600">Frends</span>
+				</div>
+				<div class="flex space-x-4 ">
+					<div class="text-gray-600 dark:text-gray-300 flex space-x-2 items-center">
+						<svg (click)="searchNav = !searchNav" xmlns="http://www.w3.org/2000/svg" fill="none"
+							viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+							<path stroke-linecap="round" stroke-linejoin="round"
+								d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+						</svg>
+					</div>
+					<!-- <button [matMenuTriggerFor]="headerMenu" class="dark:text-gray-300">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+							stroke="currentColor" class="w-5 h-5">
+							<path stroke-linecap="round" stroke-linejoin="round"
+								d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+						</svg>
+					</button>
+					<mat-menu #headerMenu class="darkBg flex flex-col space-x-4 text-gray-300">
+						<div class="p-1 flex space-x-2  ">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+								stroke="currentColor" class="w-5 h-5">
+								<path stroke-linecap="round" stroke-linejoin="round"
+									d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+							</svg>
+							<button class="text-sm">Explore</button>
+						</div>
+						<div class="p-1 flex space-x-2 ">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+								stroke="currentColor" class="w-5 h-5">
+								<path stroke-linecap="round" stroke-linejoin="round"
+									d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+							</svg>
+							<button class="text-sm">Story</button>
+						</div>
+						<div routerLink="./notif" class="p-1 flex space-x-2 ">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+								stroke="currentColor" class="w-5 h-5">
+								<path stroke-linecap="round" stroke-linejoin="round"
+									d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
+							</svg>
+							<button class="text-sm">Notification</button>
+						</div>
+						<div class="p-1 flex space-x-2 ">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+								stroke="currentColor" class="w-5 h-5">
+								<path stroke-linecap="round" stroke-linejoin="round"
+									d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+							</svg>
+							<button (click)="logout()" class="text-sm">Logout</button>
+						</div>
+					</mat-menu> -->
+					<div class="relative  text-left">
+						<button (click)="isMenuOpen = !isMenuOpen" type="button" cdkOverlayOrigin #trigger="cdkOverlayOrigin"
+							class=" text-gray-700 dark:text-gray-300 rounded-md  hover:bg-gray-200 focus:outline-none">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+								stroke="currentColor" class="w-5 h-5">
+								<path stroke-linecap="round" stroke-linejoin="round"
+									d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+							</svg>
+						</button>
+						<ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger"
+							[cdkConnectedOverlayOpen]="isMenuOpen" (backdropClick)="isMenuOpen = !isMenuOpen"
+							[cdkConnectedOverlayHasBackdrop]="isMenuOpen"
+							[cdkConnectedOverlayHasBackdrop]="'cdk-overlay-transparent-backdrop-cs'">
+							<div (click)="isMenuOpen = !isMenuOpen"
+								class=" absolute right-0 z-50 mt-3 w-40 rounded-md shadow-lg bg-zinc-50 dark:bg-gray-700 text-gray-600 dark:text-gray-300 ring-1 ring-black ring-opacity-5 focus:outline-none">
+								<!-- Dropdown items -->
+								<button routerLink="./explore" class="p-1 flex space-x-2  ">
+									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+										stroke="currentColor" class="w-5 h-5">
+										<path stroke-linecap="round" stroke-linejoin="round"
+											d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+									</svg>
+									<span class="text-sm">Explore</span>
+								</button>
+								<button routerLink="./pages" class="p-1 flex space-x-2 ">
+									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+										stroke="currentColor" class="w-5 h-5">
+										<path stroke-linecap="round" stroke-linejoin="round"
+											d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+									</svg>
+									<span class="text-sm">Pages</span>
+								</button>
+								<button routerLink="./notif" class="p-1 flex space-x-2 ">
+									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+										stroke="currentColor" class="w-5 h-5">
+										<path stroke-linecap="round" stroke-linejoin="round"
+											d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
+									</svg>
+									<span class="text-sm">Notification</span>
+								</button>
+								<div *ngIf="profil?.role === 'admin'" routerLink="./members" class="p-1 flex space-x-2 ">
+									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+										stroke="currentColor" class="w-5 h-5">
+										<path stroke-linecap="round" stroke-linejoin="round"
+											d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+									</svg>
+									<span class="text-sm">Members</span>
+								</div>
+								<button (click)="logout()" class="p-1 flex space-x-2 text-gray-600 dark:text-gray-300">
+									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+										stroke="currentColor" class="w-5 h-5">
+										<path stroke-linecap="round" stroke-linejoin="round"
+											d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+									</svg>
+									<span class="text-sm">Logout</span>
+								</button>
+							</div>
+						</ng-template>
+
+					</div>
+
+				</div>
+			</div>
+			<ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="searchNav"
+				(backdropClick)="searchNav = !searchNav" [cdkConnectedOverlayHasBackdrop]="searchNav"
+				[cdkConnectedOverlayHasBackdrop]="'cdk-overlay-transparent-backdrop-cs'">
+				<div
+					class="w-1/4 max-sm:w-4/6 h-full bottom-0 left-0 dark:bg-gray-700 bg-gray-400 sm:ml-4 p-4 border dark:border-gray-500 fixed">
+					<div hasBackdrop="false" class="p-2 flex flex-col border-2 dark:border-gray-500 h-full w-auto rounded">
+						<div class="border-b border-gray-700 p-2 flex flex-col space-y-2">
+							<span class="dark:text-gray-300 text-white">Search</span>
+							<input *ngIf="searchNav" type="text" class="bg-gray-200 rounded p-1 text-gray-500"
+								placeholder="search" [(ngModel)]="searchQuery" (input)="onSearch()">
+						</div>
+						<div *ngFor="let lst of searchResult" (click)="prfUser(lst?.username); searchNav=false"
+							class="px-1 py-2  flex items-center justify-start dark:bg-gray-500 dark:text-gray-300 text-gray-500 bg-gray-200 mx-2 my-2 rounded overflow-auto">
+							<div>{{lst.username}}</div>
+						</div>
+					</div>
+				</div>
+			</ng-template>
+		</div>
+
+		<div class="h-full w-full relative flex-grow">
+			<div class="bg-transparent bottom-0 absolute inset-0  text-gray-600">
+				<router-outlet></router-outlet>
+			</div>
+		</div>
+		<div class="sm:hidden h-auto w-full pb-2">
+			<!-- footer -->
+			<div class="h-full flex flex-row items-center justify-between w-auto space-x-2 rounded">
+				<!-- <div class="flex space-x-2">
+					<img src="assets/lightning.png" alt="" class="h-10 w-10">
+					<h1 class="text-blue-600 max-sm:hidden">Frends</h1>
+				</div> -->
+
+
+				<div routerLink="./market"
+					class="flex text-gray-600 dark:text-gray-300 space-x-4 pt-2 px-2 hover:bg-gray-300 dark:hover:bg-gray-800 rounded cursor-pointer">
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+						stroke="currentColor" class="w-6 h-6">
+						<path stroke-linecap="round" stroke-linejoin="round"
+							d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+					</svg>
+				</div>
+
+
+				<div routerLink="./messages"
+					class="flex text-gray-600 dark:text-gray-300 space-x-4 pt-2 px-2 hover:bg-gray-300 dark:hover:bg-gray-800 rounded cursor-pointer">
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+						stroke="currentColor" class="w-6 h-6">
+						<path stroke-linecap="round" stroke-linejoin="round"
+							d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
+					</svg>
+				</div>
+				<div routerLink="./home"
+					class="flex text-gray-600 dark:text-gray-300 space-x-4 pt-2 px-2 hover:bg-gray-300 dark:hover:bg-gray-800 rounded cursor-pointer">
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+						stroke="currentColor" class="w-6 h-6">
+						<path stroke-linecap="round" stroke-linejoin="round"
+							d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+					</svg>
+				</div>
+				<div routerLink="./explore"
+					class="flex text-gray-600 dark:text-gray-300 space-x-4 pt-2 px-2 hover:bg-gray-300 dark:hover:bg-gray-800 rounded cursor-pointer">
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+						stroke="currentColor" class="w-6 h-6">
+						<path stroke-linecap="round" stroke-linejoin="round"
+							d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 01-1.161.886l-.143.048a1.107 1.107 0 00-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 01-1.652.928l-.679-.906a1.125 1.125 0 00-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 00-8.862 12.872M12.75 3.031a9 9 0 016.69 14.036m0 0l-.177-.529A2.25 2.25 0 0017.128 15H16.5l-.324-.324a1.453 1.453 0 00-2.328.377l-.036.073a1.586 1.586 0 01-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643m5.276-3.67a9.012 9.012 0 01-5.276 3.67m0 0a9 9 0 01-10.275-4.835M15.75 9c0 .896-.393 1.7-1.016 2.25" />
+					</svg>
+
+				</div>
+				<div routerLink="./myProfil"
+					class="flex text-gray-600 dark:text-gray-300 space-x-4 pt-2 px-2 hover:bg-gray-300 dark:hover:bg-gray-800 rounded cursor-pointer">
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+						stroke="currentColor" class="w-6 h-6">
+						<path stroke-linecap="round" stroke-linejoin="round"
+							d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+					</svg>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>

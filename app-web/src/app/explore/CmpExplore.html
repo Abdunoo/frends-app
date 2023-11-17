@@ -1,0 +1,14 @@
+<div class="relative h-full w-full lg:ml-4 overflow-auto flex flex-col space-y-4">
+	<div class="mt-4">
+		<div class="p-2 bg-zinc-50 dark:bg-gray-700">
+			<span class="text-gray-600 dark:text-gray-300 text-base font-serif">Explore The World</span>
+		</div>
+	</div>
+	<div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+		<div *ngFor="let pst of lstPosting">
+			<div *ngIf="pst.imgUrl" class="bg-zinc-50 dark:bg-gray-700 w-full h-full lg:w-full lg:h-60 rounded flex items-center justify-center p-1">
+				<img [src]="pst.imgUrl" alt="logo" class="w-full h-full object-cover">
+			</div>
+		</div>
+	</div>
+</div>

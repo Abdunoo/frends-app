@@ -1,0 +1,39 @@
+<div class="container mx-auto pt-4 md:pl-4 flex h-auto w-full justify-between absolute inset-0">
+	<div
+		class="flex bg-zinc-50 dark:bg-gray-700 w-full h-full overflow-auto relative text-gray-600 dark:text-gray-300 p-4 rounded shadow">
+		<div class="flex flex-col space-y-2 h-full w-full">
+			<div class="col-span-2 md:col-span-1 w-auto h-40 lg:w-80 lg:h-60 ">
+				<img [src]="product.imgUrl" [alt]="product.name" class="w-auto h-full object-contain" />
+			</div>
+			<div>
+				<h1 class="text-3xl font-bold">{{ product.name }}</h1>
+			</div>
+			<div class="col-span-2 md:col-span-1 flex flex-col justify-center">
+				<div class="col-span-2 md:col-span-1 h-auto">
+					<p class="text-lg">Description</p>
+					<p class="text-sm">{{product.description}}</p>
+				</div>
+				<div class="mt-4">
+					<p class="text-lg font-semibold">Price: ${{ product.price }}</p>
+					<p class="text-lg">Stock: {{product.stock}}</p>
+					<p class="text-lg">Sold: {{product.sold}}</p>
+				</div>
+				<div class="mt-4 flex space-x-4">
+					<button  class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 focus:outline-none"
+						(click)="buyProduct(product.id)" >
+						Buy Now
+					</button>
+					<button class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 focus:outline-none"
+						(click)="addToCart()">
+						Add to Cart
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="flex" routerLink="/menu/market">
+			<mat-icon class="text-gray-500 dark:text-gray-300 flex">exit_to_app</mat-icon>
+		</div>
+	</div>
+
+	
+</div>

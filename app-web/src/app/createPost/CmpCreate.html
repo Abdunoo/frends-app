@@ -1,0 +1,35 @@
+<!-- <div class="bg-transparent text-white flex flex-col h-full mb-0">
+	<div class="flex justify-between cursor-pointer">
+		<div class="flex items-center gap-2 p-2">
+			<p class="rounded-full bg-white border border-gray-100">
+				<img
+					src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQodChuFfzDo1YJ00Ys9reDZhKmLYjbNFRtlin_hrnJq5O5IsLgbnMRwu8aMjGw1v1Gx3Q&usqp=CAU"
+					class="rounded-full" height="32px" width="32px" alt="">
+			</p>
+			<p *ngIf="profil" class="text-gray-300">{{profil.username}}</p>
+		</div>
+		<p class="p-2 rounded">Create New Post</p>
+	</div>
+	<div class="flex flex-col border-t border-gray-600 bg-gray-800 h-full w-full">
+		<div class="flex border-r border-gray-600 bg-gray-800 h-full w-full">
+			<div class="text-center" *ngIf="selectedImage">
+				<img [src]="selectedImage" height="540" width="960" alt="Selected Image">
+			</div>
+			<div class="flex items-center justify-center h-full p-4 bg-gray-800 mb-0">
+				<input type="file" (change)="onFileSelected($event)" accept="image/jpeg"
+					class="mb-2 object-contain h-full w-full">
+			</div>
+		</div>
+		<div class="flex bg-gray-800 overflow-auto flex-row space-x-4 p-4 w-full">
+			<input type="text" [ngModel]="posting?.caption" #caption
+				class="bg-gray-700 text-white border border-gray-600 p-2 rounded mt-2 w-full"
+				placeholder="Write a caption...">
+			<button class="text-gray-200 hover:bg-gray-600 p-2 rounded self-end"
+				(click)="share(caption.value)">Share</button>
+			<button class="text-gray-200 hover:bg-gray-600 p-2 rounded self-end"
+				(click)="update(caption.value)">update</button>
+
+			<button class="text-gray-200 hover:bg-gray-600 p-2 rounded self-end" >Cancel</button>
+		</div>
+	</div>
+</div> -->

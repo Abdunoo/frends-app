@@ -1,0 +1,24 @@
+/* Set the body and html elements to have 100% height */
+body, html {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+ }
+ 
+ /* Set the container to have a full height */
+ .dialog {
+	height: 100%;
+	overflow: hidden; /* Prevent double scrollbars */
+ }
+ 
+ /* Set the flex container to take up all available space */
+ .flex-1 {
+	flex: 1;
+	overflow: auto; /* Allow content to scroll if it exceeds the container height */
+ }
+ 
+ /* Set the background color for the entire container */
+ .bg-gray-800 {
+	background-color: #1f2937; /* Replace with your desired color */
+ }
+ 

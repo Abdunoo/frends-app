@@ -1,0 +1,61 @@
+<div class=" h-full w-full flex flex-col relative overflow-auto">
+	<header class="bg-zinc-50 dark:bg-gray-700 text-gray-600 dark:text-gray-300 py-4 mt-4 md:mx-4">
+		<div class="flex items-center justify-between lg:px-4 px-1">
+			<span class=" text-base">Marketplace</span>
+			<nav>
+				<ul class="flex lg:space-x-4 cursor-pointer flex-row space-x-1">
+					<li><a class=" hover:bg-gray-300 dark:hover:bg-gray-500 p-1 rounded" (click)="myProduct()">My Product</a></li>
+					<li><a class=" hover:bg-gray-300 dark:hover:bg-gray-500 p-1 rounded">My Cart</a></li>
+					<li><a (click)="showForm = !showForm" class=" hover:bg-gray-300 dark:hover:bg-gray-500 p-1 rounded">Sell Product</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div *ngIf="showForm" class="mt-4">
+		<cmp-sell></cmp-sell>
+	</div>
+	<main class="container mt-8 md:px-4 text-gray-500 dark:text-gray-300">
+		<span class="text-base font-serif mb-4 ">Featured Listings</span>
+		<div class="grid grid-cols-2	md:grid-cols-3 gap-2">
+			<!-- Sample listing cards -->
+			<div *ngFor="let prd of lstProduct">
+				<div class="bg-zinc-50 dark:bg-gray-700 p-1 md:p-3 shadow-md rounded-lg flex flex-col justify-between w-full h-full">
+					<div class="flex justify-between">
+						<span class="text-sm font-serif mb-2 ">{{prd.id}}</span>
+						<div *ngIf="prd.sellerId?.id === profil?.id" class="">
+							<button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="">
+								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+									stroke="currentColor" class="w-6 h-6">
+									<path stroke-linecap="round" stroke-linejoin="round"
+										d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+								</svg>
+							</button>
+							<mat-menu #menu="matMenu">
+								<button mat-menu-item>
+									<mat-icon>edit</mat-icon>
+									<span>edit</span>
+								</button>
+								<button mat-menu-item (click)="delete(prd.id)">
+									<mat-icon>delete_outline</mat-icon>
+									<span>delete</span>
+								</button>
+							</mat-menu>
+						</div>
+					</div>
+					<div class="flex flex-col w-full h-auto">
+						<div class="flex w-full h-40 ">
+							<img [src]="prd.imgUrl" alt="" class="h-full w-full object-cover">
+						</div>
+						<p class=" text-sm font-serif">{{prd.name}}</p>
+						<div class="lg:mt-4 mt-2 w-full flex justify-between items-center">
+							<span class="text-blue-500 font-semibold">${{prd.price}}</span>
+							<button [routerLink]="'/menu/market/'+ prd.id"
+								class="bg-blue-500 text-white lg:px-4 px-1 lg:py-2 rounded-full hover:bg-blue-600">Details</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</main>
+</div>

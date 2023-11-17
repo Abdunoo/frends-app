@@ -1,0 +1,110 @@
+<div class="flex flex-col md:flex-row h-full w-full absolute overflow-auto text-gray-600 dark:text-gray-300 pt-4 bottom-0 space-y-2">
+	<div class="bg-zinc-50 dark:bg-gray-700 p-8 rounded shadow-md w-full md:w-2/3 h-auto  md:overflow-auto space-y-2 md:mx-4">
+		<h2 class="text-2xl font-semibold mb-4">Checkout</h2>
+		<!-- Shipping Address -->
+		<div class="h-auto w-full space-y-2">
+			<div class="flex h-auto w-full space-x-4">
+				<div class="h-auto w-full flex flex-col">
+					<label for="">First Name</label>
+					<input [(ngModel)]="checkout.firstName" type="text" class="rounded w-full p-2 border dark:bg-gray-200 text-gray-600">
+				</div>
+				<div class="h-auto w-full flex flex-col">
+					<label for="">Last Name</label>
+					<input [(ngModel)]="checkout.lastName" type="text" class="rounded w-full p-2 border dark:bg-gray-200 text-gray-600">
+				</div>
+			</div>
+			<div class="h-auto w-full flex flex-col">
+				<label for="">Email Address</label>
+				<input [(ngModel)]="checkout.email" type="email" class="rounded w-full p-2 border dark:bg-gray-200 text-gray-600">
+			</div>
+			<div class="h-auto w-full flex flex-col">
+				<label for="">Street Address</label>
+				<input [(ngModel)]="checkout.streetAddress" type="text" class="rounded w-full p-2 border dark:bg-gray-200 text-gray-600">
+			</div>
+			<div class="flex h-auto w-full space-x-4">
+				<div class="h-auto w-full flex flex-col">
+					<label for="">State/Province</label>
+					<input [(ngModel)]="checkout.province" type="text" class="rounded w-full p-2 border dark:bg-gray-200 text-gray-600" >
+				</div>
+				<div class="h-auto w-full flex flex-col">
+					<label for="">City</label>
+					<input [(ngModel)]="checkout.city" type="text" class="rounded w-full p-2 border dark:bg-gray-200 text-gray-600">
+				</div>
+			</div>
+			<div class="flex h-auto w-full space-x-4">
+				<div class="h-auto w-full flex flex-col">
+					<label for="">Postal Code</label>
+					<input [(ngModel)]="checkout.posCode" type="text" class="rounded w-full p-2 border dark:bg-gray-200 text-gray-600">
+				</div>
+				<div class="h-auto w-full flex flex-col">
+					<label for="">Phone</label>
+					<input [(ngModel)]="checkout.phone" type="tel" class="rounded w-full p-2 border dark:bg-gray-200 text-gray-600">
+				</div>
+			</div>
+		</div>
+		<div>
+			<h2 class="text-2xl font-semibold">Payment Method</h2>
+			<div>
+				<span class="text-base mb-4">Pay With Credit Card</span>
+				<div class="grid grid-cols-2 gap-4">
+					<div class="h-auto w-full flex flex-col">
+						<label for="">Card Number</label>
+						<input type="text" class="rounded w-full p-2 border dark:bg-gray-200 text-gray-600">
+					</div>
+					<div class="h-auto w-full flex flex-col">
+						<label for="">Expiration Date</label>
+						<input type="date" class="rounded w-full p-2 border dark:bg-gray-200 text-gray-600">
+					</div>
+					<div class="h-auto w-full flex flex-col">
+						<label for="">Card Security Code</label>
+						<input type="password" class="rounded w-full p-2 border dark:bg-gray-200 text-gray-600">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="bg-zinc-50 dark:bg-gray-700 text-gray-600 dark:text-gray-300 p-8 rounded shadow-md w-full md:w-1/3 h-full md:overflow-auto">
+		<!-- product -->
+		<div *ngIf="product" class="">
+			<div class="flex flex-col space-y-2">
+				<div class="flex space-x-2">
+					<div class="h-1/2 w-1/2">
+						<img [src]="product.imgUrl" alt="" class="h-full w-full object-contain">
+					</div>
+					<div class="flex flex-col space-y-2">
+						<div class="h-auto w-full flex">
+							<label for="">Name:</label>
+							<span>{{product.name}}</span>
+						</div>
+						<div class="h-auto w-full flex">
+							<label for="">Price:</label>
+							<span>${{product.price}}</span>
+						</div>
+						<div class="h-auto w-full flex">
+							<label for="">Seller:</label>
+							<span>{{product.sellerId?.username}}</span>
+						</div>
+					</div>
+				</div>
+				<div class="border h-auto w-auto p-2 space-y-2">
+					<div class="h-auto w-full flex justify-between">
+						<label for="">Price</label>
+						<span #price>${{product.price}}</span>
+					</div>
+					<div class="h-auto w-full flex justify-between border-b">
+						<label for="">Discount</label>
+						<span #dscnt>$0</span>
+					</div>
+					<div class="h-auto w-full flex justify-between">
+						<label for="">Total</label>
+						<span>${{product.price}}</span>
+					</div>
+				</div>
+				<div class="h-auto w-full ">
+					<button 
+						class="border rounded p-2 h-auto w-full bg-blue-500 hover:bg-blue-600 text-gray-50" (click)="insertCheckout()">Checkout</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

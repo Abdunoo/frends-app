@@ -1,0 +1,42 @@
+<div class="h-full w-auto md:ml-4 md:mt-4 overflow-auto dark:bg-gray-700 bg-gray-300 flex flex-col rounded">
+	<header class="bg-zinc-500 dark:bg-gray-600 text-gray-50 py-1 px-6">
+		<p class="text-2xl font-extralight border-b">{{username}}</p>
+	</header>
+
+	<div *ngIf="!haveMsg" class="flex-1 p-4 h-full w-full overflow-auto flex flex-col text-gray-50">
+		<div *ngFor="let chat of myMessage" class="flex flex-col">
+			<div *ngIf="chat.senderId?.username === profil?.username && chat.getterId?.username === username"
+				class="flex justify-end mb-2">
+				<div class="bg-gray-500  py-2 px-4 rounded-tl-lg rounded-br-lg rounded-bl-lg max-w-xs">
+					{{ chat.messages }}
+				</div>
+			</div>
+			<div *ngIf="chat.senderId?.username === username" class="flex justify-start mb-2">
+				<div class="bg-gray-500 py-2 px-4 rounded-tr-lg rounded-bl-lg rounded-br-lg max-w-xs">
+					{{ chat.messages }}
+				</div>
+			</div>
+		</div>
+		<!-- <div *ngIf="messageToSend"
+			class="bg-blue-500 text-white py-2 px-4 rounded-tl-lg rounded-br-lg rounded-bl-lg max-w-xs">
+			{{ messageToSend }}
+		</div>
+		<div *ngIf="newMessages" class="bg-blue-500 py-2 px-4 rounded-tr-lg rounded-bl-lg rounded-br-lg max-w-xs">
+			{{ newMessages }}
+		</div> -->
+	</div>
+
+	<div *ngIf="haveMsg " class="flex-1 p-4 overflow-y-auto">
+		<div class="flex items-center justify-center bg-gray-400 rounded text-lg">
+			<p>Send a message here</p>
+		</div>
+	</div>
+
+	<div class="bg-zinc-50 dark:bg-gray-800  text-gray-600 md:py-4 border-gray-300">
+		<div class="flex">
+			<input type="text" #message placeholder="Type a message" class="flex-1 border-none rounded-md py-2 px-4 dark:bg-gray-500 dark:text-gray-300">
+			<button (click)="sendMessage(message.value); message.value = ''"
+				class="bg-blue-600 text-white py-2 px-4 ml-2 rounded-md">Send</button>
+		</div>
+	</div>
+</div>

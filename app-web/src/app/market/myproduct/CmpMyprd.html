@@ -1,0 +1,47 @@
+<div class="container mt-8 md:px-4 text-gray-500 dark:text-gray-300">
+	<span class="text-base font-serif mb-4 ">My Product List</span>
+	<div class="grid grid-cols-2	md:grid-cols-3 gap-2">
+		<!-- Sample listing cards -->
+		<div *ngFor="let prd of lstProduct">
+			<div
+				class="bg-zinc-50 dark:bg-gray-700 p-1 md:p-3 shadow-md rounded-lg flex flex-col w-full h-full">
+				<div class="flex justify-between">
+					<span class="text-sm font-serif mb-2 ">{{prd.id}}</span>
+					<div *ngIf="prd.sellerId?.id === profil?.id" class="">
+						<button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+								stroke="currentColor" class="w-6 h-6">
+								<path stroke-linecap="round" stroke-linejoin="round"
+									d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+							</svg>
+						</button>
+						<mat-menu #menu="matMenu">
+							<button mat-menu-item>
+								<mat-icon>edit</mat-icon>
+								<span>edit</span>
+							</button>
+							<button mat-menu-item (click)="delete(prd.id)">
+								<mat-icon>delete_outline</mat-icon>
+								<span>delete</span>
+							</button>
+						</mat-menu>
+					</div>
+				</div>
+				<div class="flex flex-col w-full h-auto">
+					<div class="flex w-full h-40 ">
+						<img [src]="prd.imgUrl" alt="" class="h-full w-full object-cover">
+					</div>
+					<div class="lg:mt-4 mt-2 w-full flex flex-col ">
+						<span class=" ">name = {{prd.name}}</span>
+						<span class=" ">description = {{prd.description}}</span>
+						<span class=" ">price = {{prd.price}}</span>
+						<span class=" ">stock = {{prd.stock}}</span>
+						<span class=" ">sold = {{prd.sold}}</span>
+						<span class=" ">seller = {{prd.sellerId?.username}}</span>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

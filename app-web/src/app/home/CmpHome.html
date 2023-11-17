@@ -1,0 +1,219 @@
+<!-- <header class="flex bg-zinc-50 w-auto md:mx-4 items-center justify-between p-2 text-gray-700 rounded shadow">
+		<div class="hidden sm:flex space-x-4">
+			<div class="p-1 bg-blue-500 rounded" (click)="showHead = 1">
+				<button>Explore</button>
+			</div>
+			<div class="p-1" (click)="showHead = 2">
+				<button>Story</button>
+			</div>
+			<div class="p-1" (click)="showHead = 3">
+				<button>Pages</button>
+			</div>
+		</div>
+
+		<div class="max-sm:hidden flex space-x-4">
+			<div class="text-gray-600 flex space-x-2 items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+					stroke="currentColor" class="w-6 h-6">
+					<path stroke-linecap="round" stroke-linejoin="round"
+						d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+				</svg>
+				<input type="text" class="bg-gray-200 rounded p-1" placeholder="search">
+			</div>
+			<div class="flex space-x-2 text-gray-600 items-center">
+				<img src="assets/profil.jpeg" alt="" class="w-10 h-10 rounded-full">
+				<p class="">@{{profil?.username}}</p>
+			</div>
+		</div>
+
+		<div class="md:hidden flex space-x-2 items-center justify-between w-full">
+			<p class="text-blue-500 text-sm p-0 text-center">Frends</p>
+			<div>
+				<button [matMenuTriggerFor]="headerMenu">
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+					</svg>				 
+				</button>
+				<mat-menu #headerMenu class="flex flex-col space-x-4 text-gray-600">
+					<div class="p-1 hover:bg-gray-400 rounded" (click)="showHead = 1">
+						<button>Explore</button>
+					</div>
+					<div class="p-1" (click)="showHead = 2">
+						<button>Story</button>
+					</div>
+					<div class="p-1" (click)="showHead = 3">
+						<button>Pages</button>
+					</div>
+				</mat-menu>
+			</div>
+		</div>
+	</header> -->
+<div class="h-full flex flex-col overflow-hidden bottom-0">
+	<div class="flex w-full h-full overflow-auto bottom-0" [infiniteScrollDistance]="2" infiniteScroll
+		[scrollWindow]="false" (scrolled)="onScroll()">
+		<div class="w-full md:ml-4">
+			<div class="flex justify-center items-center"></div>
+			<div class="overflow-auto flex justify-between">
+				<cmp-story></cmp-story>
+				<div (click)="showSidebar = !showSidebar" matTooltip="show right bar"
+					class="hidden md:flex absolute justify-end right-4 top-4 w-auto h-auto text-gray-600 dark:text-gray-300">
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+						stroke="currentColor" class="w-6 h-6">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
+					</svg>
+				</div>
+			</div>
+			<div class="flex flex-col items-center justify-center w-full">
+				<!-- create post -->
+				<div class="w-full rounded dark:bg-gray-700 bg-zinc-50 p-2 space-y-2">
+					<div class="flex space-x-2 items-center w-full rounded">
+						<img *ngIf="!profil?.imgUrl" src="assets/profil.jpeg" alt="Profile Picture"
+							class="w-11 h-11 rounded-full object-cover">
+						<img *ngIf="profil?.imgUrl" [src]="profil?.imgUrl" alt="Profile Picture"
+							class="w-11 h-11 rounded-full object-cover"> <input #caption [ngModel]="caption.value" type="text"
+							class="p-2 border-hidden bg-gray-200 dark:bg-gray-500 dark:text-gray-300 w-full m-auto rounded"
+							placeholder="What's on your mind?">
+					</div>
+					<div class="flex justify-between text-gray-600 ">
+						<div class="flex flex-col w-1/2">
+							<div class="flex">
+								<input type="file" (change)="onFileSelected($event)" accept="image/jpeg"
+									class=" dark:bg-gray-500">
+							</div>
+							<div class="text-center w-40 h-40" *ngIf="selectedImage">
+								<img [src]="selectedImage" alt="Selected Image" class="object-contain w-40 h-40">
+							</div>
+						</div>
+						<div class=" ">
+							<button class="bg-blue-700 rounded px-2 py-1 text-gray-100 hover:bg-blue-400"
+								[disabled]="!caption.value" (click)="share(caption.value)" (click)="caption.value = ''"
+								(click)="selectedImage = null">Post</button>
+						</div>
+					</div>
+				</div>
+				<div *ngFor="let pst of lstPosting"
+					class="h-auto w-full my-4 dark:bg-gray-700 bg-zinc-50 rounded shadow md:p-2 text-gray-600 dark:text-gray-300">
+					<div class="flex items-center justify-between ">
+						<div [routerLink]="'/menu/prf/'+ pst?.memId?.username" class="flex flex-row items-center gap-2 p-2">
+							<p class="rounded-full bg-zinc-50 border border-gray-100">
+								<img *ngIf="!pst.memId?.imgUrl" src="assets/profil.jpeg" alt="Profile Picture"
+									class="w-11 h-11 rounded-full object-cover">
+								<img *ngIf="pst.memId?.imgUrl" [src]="pst.memId?.imgUrl" alt="Profile Picture"
+									class="w-11 h-11 rounded-full object-cover">
+							</p>
+							<p>{{pst.memId?.username}}</p>
+						</div>
+						<div *ngIf="pst.memId?.id === profil?.id" class="flex px-2">
+							<button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="bg">
+								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+									stroke="currentColor" class="w-6 h-6">
+									<path stroke-linecap="round" stroke-linejoin="round"
+										d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+								</svg>
+							</button>
+							<mat-menu #menu="matMenu">
+								<button mat-menu-item>
+									<mat-icon>edit</mat-icon>
+									<span>Edit Post</span>
+								</button>
+								<button mat-menu-item (click)="delete(pst.id)">
+									<mat-icon>delete_outline</mat-icon>
+									<span>Delete Post</span>
+								</button>
+							</mat-menu>
+						</div>
+					</div>
+					<div class=" flex px-2">
+						<p class="text-sm">{{pst.caption}}</p>
+					</div>
+					<div class="flex items-center justify-center rounded md:border dark:border-gray-500">
+						<div *ngIf="pst.imgUrl"
+							class=" rounded w-full h-auto lg:h-96 lg:w-full flex items-center justify-center">
+							<img [src]="pst.imgUrl" alt="" class="w-full h-full object-contain ">
+						</div>
+					</div>
+
+					<div class="flex justify-between p-2 items-center">
+						<div class="flex space-x-4">
+							<div class="flex space-x-2">
+								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+									stroke="currentColor" class="w-6 h-6 text-gray-400">
+									<path stroke-linecap="round" stroke-linejoin="round"
+										d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+								</svg>
+								<span>2.4K Likes</span>
+							</div>
+							<div class="flex space-x-1">
+								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+									stroke="currentColor" class="w-6 h-6 text-gray-400">
+									<path stroke-linecap="round" stroke-linejoin="round"
+										d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z" />
+								</svg>
+								<span>300 Comments</span>
+							</div>
+						</div>
+						<div class="flex space-x-1">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+								stroke="currentColor" class="w-6 h-6 text-gray-400">
+								<path stroke-linecap="round" stroke-linejoin="round"
+									d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+							</svg>
+							<span>Share</span>
+						</div>
+					</div>
+					<div>
+						<div class="flex space-x-2 items-center w-full rounded p-2">
+							<img *ngIf="!profil?.imgUrl" src="assets/profil.jpeg" alt="Profile Picture"
+								class="w-11 h-11 rounded-full object-cover">
+							<img *ngIf="profil?.imgUrl" [src]="profil?.imgUrl" alt="Profile Picture"
+								class="w-11 h-11 rounded-full object-cover"> <input #caption [ngModel]="caption.value"
+								type="text" class="p-2 border-hidden bg-gray-200 dark:bg-gray-500 w-full m-auto rounded"
+								placeholder="Write your comment">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <div (click)="showSidebar = !showSidebar" class="h-auto w-auto pr-1 pt-1 text-gray-600 dark:text-gray-300">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+				stroke="currentColor" class="w-6 h-6">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
+			</svg>
+		</div> -->
+		<div *ngIf="showSidebar" class="space-y-4 max-sm:hidden ml-2 mt-4">
+			<div class="h-full w-full bg-zinc-50 rounded flex items-center justify-center p-2">
+				<p class="text-blue-600 font-sans">Comming Soon.....</p>
+			</div>
+			<!-- <div
+				class="w-auto h-auto max-sm:hidden rightSide dark:bg-gray-700 bg-zinc-50 dark:text-gray-300 rounded p-2 pr-8">
+				<p class="text-left px-10 text-lg">Contacts</p>
+				<div *ngFor="let mem of lstMember" class="">
+					<div class=" flex flex-row  space-x-2 items-center overflow-auto">
+						<p class="rounded-full bg-white border border-gray-100">
+							<img *ngIf="!mem?.imgUrl" src="assets/profil.jpeg" alt="Profile Picture"
+								class="w-11 h-11 rounded-full object-cover">
+							<img *ngIf="mem?.imgUrl" [src]="mem?.imgUrl" alt="Profile Picture"
+								class="w-11 h-11 rounded-full object-cover">
+						</p>
+						<p class="">{{mem.username}}</p>
+					</div>
+				</div>
+			</div>
+			<div
+				class="w-auto h-auto max-sm:hidden rightSide dark:bg-gray-700 bg-zinc-50 dark:text-gray-300 rounded p-2 pr-8">
+				<p class="text-left px-16 text-lg">Contacts</p>
+				<div *ngFor="let mem of lstMember" class="">
+					<div class=" flex flex-row  space-x-2 items-center overflow-auto">
+						<p class="rounded-full bg-white border border-gray-100">
+							<img *ngIf="!mem?.imgUrl" src="assets/profil.jpeg" alt="Profile Picture"
+								class="w-11 h-11 rounded-full object-cover">
+							<img *ngIf="mem?.imgUrl" [src]="mem?.imgUrl" alt="Profile Picture"
+								class="w-11 h-11 rounded-full object-cover">
+						</p>
+						<p class="">{{mem.username}}</p>
+					</div>
+				</div>
+			</div> -->
+		</div>
+	</div>
+</div>

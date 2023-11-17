@@ -1,0 +1,80 @@
+<!-- <div class="dialog bg-gray-800 text-white flex flex-col h-full mb-0">
+	<div class="flex justify-between cursor-pointer">
+		 <div class="flex items-center gap-2 p-2">
+			  <p class="rounded-full bg-white border border-gray-100">
+					<img
+						 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQodChuFfzDo1YJ00Ys9reDZhKmLYjbNFRtlin_hrnJq5O5IsLgbnMRwu8aMjGw1v1Gx3Q&usqp=CAU"
+						 class="rounded-full" height="32px" width="32px" alt="">
+			  </p>
+			  <p *ngIf="profil" class="text-gray-300">{{ profil.username }}</p>
+		 </div>
+		 <p class="pt-1 rounded">Upload Story Here</p>
+		 <p class="text-blue-600 hover:bg-gray-600 order-last p-1 rounded">
+			  Share
+		 </p>
+	</div>
+	<div class="grid border-t border-gray-600 flex-1 bg-gray-800 h-full w-full">
+		 <div class="border-r border-gray-600 bg-gray-800 h-full">
+			  <div class="text-center" *ngIf="selectedImage">
+					<img [src]="selectedImage" height="540" width="960" alt="Selected Image">
+			  </div>
+			  <div *ngIf="!selectedImage" class="flex items-center justify-center h-full p-4 bg-gray-800 mb-0">
+					<input type="file" (change)="onFileSelected($event)" accept="image/jpeg" class="mb-2">
+			  </div>
+		 </div>
+	</div>
+</div> -->
+
+<div class="bg-zinc-50 dark:bg-gray-700  w-full h-full flex items-center justify-center p-2">
+	<div class="bg-zinc-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 lg:p-8 p-2 rounded-lg shadow-lg flex">
+		<div class="w-full h-auto lg:pr-8 space-y-2">
+			<span class="text-sm font-semibold lg:mb-4">Sell Your Product</span>
+			<form id="productForm" class="space-y-2">
+				<div class="flex flex-col lg:justify-betwee gap-4">
+					<div class="flex flex-col">
+						<div class="lg:mb-4">
+							<label for="productName" class="block ">Product Name:</label>
+							<input #name type="text" id="productName" name="productName"
+								class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 dark:bg-gray-700"
+								required>
+						</div>
+						<div class="lg:mb-4">
+							<label for="productPrice" class="block ">Product Price:</label>
+							<input #price type="number" id="productPrice" name="productPrice"
+								class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 dark:bg-gray-700" required>
+						</div>
+						<div class="lg:mb-4">
+							<label for="description" class="block ">Description:</label>
+							<input #description type="text" id="description" name="description"
+								class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 dark:bg-gray-700" required>
+						</div>
+						<div class="lg:mb-4">
+							<label for="stock" class="block">Stock:</label>
+							<input #stock type="number" id="stock" name="stock"
+								class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 dark:bg-gray-700" required>
+						</div>
+					</div>
+					<div class="lg:mb-4">
+						<label for="productImage" class="block ">Product Image:</label>
+						<div class="text-center h-60 w-80 rounded" *ngIf="selectedImage">
+							<img [src]="selectedImage" class="object-contain" alt="Selected Image">
+						</div>
+						<div *ngIf="!selectedImage" class="flex items-center justify-center h-1/4 lg:p-4 rounded  mb-0">
+							<input type="file" (change)="onFileSelected($event)" accept="image/jpeg" class="mb-2">
+						</div>
+					</div>
+				</div>
+				<div class="flex justify-between">
+					<button type="button" (click)="sell(name.value, price.valueAsNumber, description.value, stock.valueAsNumber)"
+						class="bg-blue-500 text-white px-2 lg:px-4 lg:py-2 rounded-md hover:bg-blue-600 focus:outline-none">Sell
+					</button>
+					<button type="button" (click)="cancel()"
+						class="bg-blue-500 text-white px-2 lg:px-4 lg:py-2 rounded-md hover:bg-blue-600 focus:outline-none">Cancel
+					</button>
+				</div>
+			</form>
+		</div>
+
+	</div>
+
+</div>

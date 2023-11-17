@@ -1,0 +1,101 @@
+<div class="h-full w-full relative flex overflow-auto md:mx-4">
+	<div class="h-full w-full absolute inset-0 pt-4 rounded">
+		<div
+			class="flex flex-col justify-between bg-zinc-50 dark:bg-gray-700 p-4 space-y-4 rounded text-gray-600 dark:text-gray-300">
+			<div class="flex justify-between p-2">
+				<div class="flex space-x-4">
+					<div class="flex flex-col">
+						<div class="w-full h-full rounded-full flex flex-row space-x-3">
+							<div class="text-center" *ngIf="selectedImage">
+								<img [src]="selectedImage" alt="Selected Image" class="w-16 h-16 rounded-full">
+							</div>
+
+							<div *ngIf="!selectedImage" class="flex space-x-1 h-full w-full">
+								<div class="flex items-start" matTooltip="Change photo profile" matTooltipPosition="above">
+									<label for="dropzone-file"
+										class="flex flex-col items-center justify-center w-auto h-auto rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+										<div class="flex flex-col items-center justify-center ">
+											<svg class="w-6 h-6 text-gray-500 dark:text-gray-400" aria-hidden="true"
+												xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+												<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+													stroke-width="2"
+													d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+											</svg>
+										</div>
+										<input id="dropzone-file" (change)="onFileSelected($event)" type="file" class="hidden" />
+									</label>
+								</div>
+								<img *ngIf="!profil?.imgUrl" src="assets/profil.jpeg" alt="Profile Picture" class="w-16 h-16 rounded-full object-contain">
+								<img *ngIf="profil?.imgUrl" [src]="profil?.imgUrl" alt="Profile Picture" class="w-16 h-16 rounded-full object-cover">
+							</div>
+							<div class="flex items-center space-x-4">
+								<div>
+									<p>0 posts</p>
+								</div>
+								<div>
+									<p>0 followers</p>
+								</div>
+								<div>
+									<p>0 following</p>
+								</div>
+							</div>
+						</div>
+						<p class="">@{{profil?.username}}</p>
+						<div *ngIf="editUsername" class="flex flex-col space-y-2">
+							<input type="text" #usrnm [ngModel]="profil.username" class="text-gray-600 bg-gray-300 rounded p-1"
+								placeholder="new username">
+							<button class="bg-gray-300 p-1 text-blue-600 rounded" (click)="changeUsername(usrnm.value)"
+								(click)="editUsername = false">save</button>
+						</div>
+						<div *ngIf="editPwd" class="flex flex-col space-y-2">
+							<input type="text" #pwd class="text-gray-600 bg-gray-300 rounded p-1" placeholder="new password">
+							<button class="bg-gray-300 p-1 text-blue-600 rounded" (click)="changePwd(pwd.value)"
+								(click)="editPwd = false">save</button>
+						</div>
+						<div *ngIf="editBio" class="flex flex-col space-y-2">
+							<input type="text" #bio class="text-gray-600 bg-gray-300 rounded p-1" placeholder="new bio">
+							<button class="bg-gray-300 p-1 text-blue-600 rounded" (click)="changeBio(bio.value)"
+								(click)="editBio = false">save</button>
+						</div>
+					</div>
+
+				</div>
+				<div class="flex items-start">
+					<button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="bg">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+							stroke="currentColor" class="w-6 h-6">
+							<path stroke-linecap="round" stroke-linejoin="round"
+								d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+						</svg>
+					</button>
+					<mat-menu #menu="matMenu" class="">
+						<button mat-menu-item (click)="editUsername = !editUsername">
+							<mat-icon>edit</mat-icon>
+							<span>Change Username</span>
+						</button>
+						<button mat-menu-item (click)="editPwd = !editPwd">
+							<mat-icon>edit</mat-icon>
+							<span>Change Password</span>
+						</button>
+						<button mat-menu-item (click)="editBio = !editBio">
+							<mat-icon>edit</mat-icon>
+							<span>Change Bio</span>
+						</button>
+					</mat-menu>
+				</div>
+			</div>
+			<p class="">{{profil?.bio}}</p>
+			<p class="border-b"></p>
+			<div class="grid grid-cols-3 gap-2">
+				<div *ngFor="let pst of post" class="pr-2">
+					<div *ngIf="pst.imgUrl"
+						class="w-full p-1 bg-zinc-50 dark:bg-gray-800 rounded shadow text-gray-600 dark:text-gray-300 flex flex-col items-center justify-center">
+						<div *ngIf="pst.imgUrl" class="rounded w-20 h-20 lg:w-40 lg:h-40 flex items-center justify-center">
+							<img [src]="pst.imgUrl" alt="" class="w-full h-full object-cover ">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

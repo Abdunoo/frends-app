@@ -1,0 +1,9 @@
+<div class="h-full w-auto  ml-4 my-4 pb-4">
+	<div class="bg-zinc-50 dark:bg-gray-700 text-gray-600 dark:text-gray-200 p-4 space-y-2 h-full w-full relative overflow-auto">
+		<p class="text-gray-600 dark:text-gray-200">Notification</p>
+		<div *ngFor="let ntf of notif" class="h-auto w-auto px-1 py-2 bg-gray-300 dark:bg-gray-600 rounded-lg">
+			<p class="">{{ntf.notif}}</p>
+			<p class="">{{ntf.time | date:'dd-MM-yyy HH:mm'}}</p>
+		</div>
+	</div>
+</div>

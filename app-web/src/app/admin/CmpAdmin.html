@@ -1,0 +1,53 @@
+<div class=" h-full w-full flex pt-4 md:pl-4">
+	<div [ngClass]="{'hidden lg:flex':showingDetail}" class="h-full w-full  md:mr-4 relative rounded">
+		<div class="h-full w-auto absolute inset-0 overflow-auto rounded">
+			<table mat-table [dataSource]="lstMember">
+				<!-- Name Column -->
+				<ng-container matColumnDef="username">
+					<th mat-header-cell *matHeaderCellDef> Username </th>
+					<td mat-cell *matCellDef="let element" (click)="selectedId = element.id"
+						(click)="showingDetail = !showingDetail"> {{element.username}} </td>
+				</ng-container>
+
+				<!-- Weight Column -->
+				<ng-container matColumnDef="email">
+					<th mat-header-cell *matHeaderCellDef> Email </th>
+					<td mat-cell *matCellDef="let element"> {{element.email}} </td>
+				</ng-container>
+
+				<!-- Symbol Column -->
+				<ng-container matColumnDef="role">
+					<th mat-header-cell *matHeaderCellDef> Role </th>
+					<td mat-cell *matCellDef="let element"> {{element.role}} </td>
+				</ng-container>
+
+				<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+			</table>
+		</div>
+
+	</div>
+	<div *ngIf="showingDetail" class="h-full w-full bg-gray-300 rounded">
+		<div class="h-full w-full rounded">
+			<cmp-edit-mem [id]="selectedId ?? 0"></cmp-edit-mem>
+		</div>
+	</div>
+	<div class="absolute flex justify-end right-4 top-20 w-auto h-auto rounded text-white border bg-gray-600" >
+		<button mat-fab aria-label="Example icon button with a menu icon"
+			(click)="showingDetail = !showingDetail" (click)="selectedId = 0">
+			<i *ngIf="showingDetail" matTooltip="close">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+					stroke="currentColor" class="w-6 h-6">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+				</svg>
+			</i>
+			<i *ngIf="!showingDetail" matTooltip="add new member">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+					stroke="currentColor" class="w-6 h-6">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+				</svg>
+			</i>
+		</button>
+	</div>
+
+</div>

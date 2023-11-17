@@ -1,0 +1,15 @@
+<!-- <div class="absolute inset-0 overflow-auto flex flex-col"> -->
+<div class="flex h-full w-full md:px-4 pt-4 rounded ">
+	<div class="flex flex-col h-full w-full md:w-1/4 dark:bg-gray-700 bg-zinc-50 text-gray-600 dark:text-gray-300 overflow-auto space-y-2 rounded">
+		<p class="p-4 text-base text-blue-500">Message</p>
+		<div *ngFor="let mem of lstMember" (click)="sendMsg(mem?.username)" (click)="showMenu = true"
+			class="px-2 py-3 flex border items-center justify-start dark:bg-gray-500 hover:bg-gray-300 dark:hover:bg-gray-800 mx-4 rounded">
+			<!-- <p *ngIf="profil.username === mem.username ">{{ mem.username}}</p> -->
+			<div class="">
+				{{mem?.username}}
+			</div>
+		</div>
+	</div>
+
+</div>
+<!-- </div> -->

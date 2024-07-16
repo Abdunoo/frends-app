@@ -1,12 +1,14 @@
 package org.acme.dto;
 
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.control.ActivateRequestContext;
 
 /**
  *
  * @author abdun
  */
 @RequestScoped
+@ActivateRequestContext
 public class CurrentUser {
 	private int memId;
 

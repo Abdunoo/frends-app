@@ -10,6 +10,7 @@ import org.acme.srv.SrvMarket;
 import org.acme.srv.SrvMember;
 
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.control.ActivateRequestContext;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
@@ -39,6 +40,7 @@ public class WsCheckout {
 	@POST
 	@NeedUser
 	@RequestScoped
+	@ActivateRequestContext
 	public void insert(RcdCheckout rcdCheckout) {
 		RcdMember buyer = srvMember.getMyProfil(currentUser.getMemId());
 		rcdCheckout.setBuyerId(buyer);

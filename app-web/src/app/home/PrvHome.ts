@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AssetToUpload } from '../createPost/AssetToUpload';
 import { BehaviorSubject, Subject, concatMap, startWith } from 'rxjs';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 
 
 export interface Posting {
